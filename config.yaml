@@ -1,0 +1,112 @@
+# TTC Benchmarking Configuration
+
+# Model configuration
+model_name: "llama-3.3-70b-versatile"
+max_concurrent_requests: 50
+request_timeout: 60
+
+# Benchmarks to run
+benchmarks:
+  - crmarena
+  - worfbench
+
+# Policy configurations
+policies:
+  # Speculative Decoding variants
+  speculative_decoding:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      look_ahead_tokens: 1
+  
+  speculative_decoding_4token:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      look_ahead_tokens: 4
+  
+  # Dynamic Token Pruning variants
+  dynamic_pruning_top_p:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      variant: "top_p"
+      top_p: 0.9
+  
+  dynamic_pruning_entropy:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      variant: "entropy_threshold"
+      entropy_threshold: 2.0
+  
+  # Early Exit variants
+  early_exit_28:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      exit_layer: 28
+  
+  early_exit_32:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      exit_layer: 32
+  
+  # Adaptive KV-Cache variants
+  adaptive_kv_static:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      variant: "static"
+      cache_ratio: 0.8
+  
+  adaptive_kv_cosine:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      variant: "cosine"
+      cache_ratio: 0.8
+  
+  # Elastic Batch Repacking variants
+  elastic_batch_greedy:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      variant: "greedy"
+      batch_size: 4
+  
+  elastic_batch_sorted:
+    max_tokens: 1024
+    temperature: 0.7
+    top_p: 1.0
+    params:
+      variant: "sorted"
+      batch_size: 4
+
+# Results configuration
+results:
+  output_dir: "results"
+  parquet_file: "results.parquet"
+  summary_file: "summary.json"
+  
+# Dashboard configuration
+dashboard:
+  title: "TTC Benchmarking Results"
+  port: 8501
+  metrics_to_display:
+    - first_token_latency
+    - avg_token_latency
+    - throughput
+    - exact_match
+    - rouge_l
+    - f1

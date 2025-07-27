@@ -1,0 +1,9 @@
+ttc_benchmarking:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../results/ttc_benchmarking.duckdb'
+      threads: 4
+      keepalives_idle: 0
+      search_path: "main"
