@@ -141,16 +141,22 @@ class TTCBenchmarkRunner:
                     return None
     
     def _load_benchmark_data(self, benchmark_name: str) -> List[Dict[str, Any]]:
-        """Load benchmark data from JSONL file"""
+        """Load benchmark data from JSONL file with sample limit"""
         data_path = Path(f"jobs/{benchmark_name}_jobs.jsonl")
         if not data_path.exists():
             raise FileNotFoundError(f"Benchmark data not found: {data_path}")
         
+        # Get max samples from config
+        max_samples = self.config.get('data', {}).get('max_samples_per_benchmark', 500)
+        
         data = []
         with open(data_path, 'r') as f:
-            for line in f:
+            for i, line in enumerate(f):
+                if i >= max_samples:
+                    break
                 data.append(json.loads(line.strip()))
         
+        console.print(f"[blue]Loaded {len(data)} samples from {benchmark_name} (max: {max_samples})[/blue]")
         return data
     
     def save_results(self, results: List[Dict[str, Any]], output_path: str = "results/results.parquet"):
@@ -195,7 +201,7 @@ class TTCBenchmarkRunner:
         return all_results
 
 
-async def run_main(config: str, policy: str, benchmark: Optional[str], output: str, verbose: bool):
+async def run_main(config: str, policy: str, benchmark: Optional[str], output: str, verbose: bool, max_samples: Optional[int] = None):
     """Async main function"""
     
     if verbose:

@@ -10,6 +10,10 @@ benchmarks:
   - crmarena
   - worfbench
 
+# Data configuration
+data:
+  max_samples_per_benchmark: 500  # Maximum number of samples to process from each benchmark file
+
 # Policy configurations
 policies:
   # Speculative Decoding variants

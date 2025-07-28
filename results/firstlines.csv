@@ -1,0 +1,29 @@
+sample_id,policy_name,benchmark,prompt,response,ground_truth,timestamp,first_token_latency,avg_token_latency,generation_time,policy_overhead,throughput,total_tokens,exact_match,precision,recall,f1,rouge_1,rouge_2,rouge_l,semantic_similarity,prediction_length,reference_length,length_ratio,length_difference,customer_service_coverage,sales_coverage,support_coverage,retention_coverage,overall_keyword_coverage,analytical_coverage,structure_coverage,reasoning_depth
+auto_00000,early_exit_28,crmarena,"### Persona
+You are quality-focused, maintaining high standards and attention to detail in all work.
+
+### Required context
+## Lead qualification guide.
+        Look for the voice call transcripts with the lead and relevant knowledge articles to justify the lead qualification.
+        
+        - Lead Id to be considered is: 00QWt0000089AekMAE
+
+### Optional context
+# Domain Details
+## Quarters of the Year
+- Q1: January 1 to March 31 (both inclusive).
+- Q2: April 1 to June 30 (both inclusive).
+- Q3: July 1 to September 30 (both inclusive).
+- Q4: October 1 to December 31 (both inclusive).
+## Seasons
+- Winter (2024): December 1, 2024 to February 28/29, 2025 (both inclusive), specifying the year to avoid ambiguity.
+- Spring: March 1 to May 31 (both inclusive).
+- Summer: June 1 to August 31 (both inclusive).
+- Autumn/Fall: September 1 to November 30 (both inclusive).
+## Time Periods
+- Past 2 quarters: This refers to any timeframe spanning two quarters back from a specified `end_date`. (i.e. begins on the date calculated by subtracting six months from the end_date and ends on the end_date) That translates to a six-month period retrospectively from the `end_date`.
+- Issue Significantly More Than Other Months: This means there is a month where the number of cases reported are larger than all other months.
+
+### Question
+Can this lead be qualified based on the latest discussions? If the answer is no, which factors—'Budget', 'Authority', 'Need', or 'Timeline'—are responsible? Return only one or several of the four BANT factors that the lead qualification fails to meet (i.e. 'Budget', 'Authority', 'Need', 'Timeline').","Thank you for contacting us. I understand your concern about ### Persona
+You are quality-focused, maintaining h... We'll resolve this quickly.",Authority,1753655905.651916,0.28561036751832825,0.2788960100626339,6.421322588896274,0.03890520035704845,289.3974797899231,1858,0.0,0.4156141648715253,0.3454272876798055,0.37728424177576675,0.4891488793427673,0.30502247711223257,0.40251869493623343,0.44417649211874555,21,1,21.0,20,0.4198164522241673,0.774798548553679,0.7921353245541538,0.47687049960462674,0.6622501084440001,0.4797368682698333,0.5728869575217724,0.5864913762077686
